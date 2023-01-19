@@ -1,4 +1,5 @@
 import os
+from connect_db import CONFIG_DB
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,18 +57,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'alamnet.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.sqlite3'),
-        'NAME': os.environ.get('SQL_DATABASE', os.path.join(BASE_DIR, 'db.sqlite3')),
-        'USER': os.environ.get('SQL_USER', 'user'),
-        'PASSWORD': os.environ.get('SQL_PASSWORD', 'password'),
-        'HOST': os.environ.get('SQL_HOST', 'localhost'),
-        'PORT': os.environ.get('SQL_PORT', '5432')
+        'ENGINE': CONFIG_DB.get('POSTGRES_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': CONFIG_DB.get('POSTGRES_DATABASE', os.path.join(BASE_DIR, 'db.sqlite3')),
+        'USER': CONFIG_DB.get('POSTGRES_USER', 'user'),
+        'PASSWORD': CONFIG_DB.get('POSTGRES_PASSWORD', 'password'),
+        'HOST': CONFIG_DB.get('POSTGRES_HOST', 'localhost'),
+        'PORT': CONFIG_DB.get('POSTGRES_PORT', '5432')
     }
 }
 
@@ -121,3 +121,5 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
 }
+
+AUTH_USER_MODEL = 'profiles.User'
