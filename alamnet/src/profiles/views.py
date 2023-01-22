@@ -1,17 +1,21 @@
-from rest_framework.generics import RetrieveAPIView, UpdateAPIView
-from .serializers import GetUserSerializer
+from rest_framework.viewsets import ModelViewSet
 from rest_framework import permissions
+
+from .serializers import *
 from django.shortcuts import render
 from .models import User
 
-class GetUserView(RetrieveAPIView):
-    """ Output user info via api"""
-    queryset = User.objects.all()
-    serializer_class = GetUserSerializer
 
-class UpdateUserView(UpdateAPIView):
-    """ Update user via api"""
-    serializer_class = GetUserSerializer
+class UserPublicView(ModelViewSet):
+    """ Output of public profile """
+    queryset = User.objects.all()
+    serializer_class = GetPublicUserSerializer  # .serializers.py
+    permission_classes = [permissions.AllowAny]
+
+
+class UserView(ModelViewSet):
+    """ Output user info via api """
+    serializer_class = GetUserSerializer  # .serializers.py
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
