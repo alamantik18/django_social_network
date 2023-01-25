@@ -4,7 +4,7 @@ from mptt.admin import MPTTModelAdmin
 from .models import *
 
 @admin.register(Post)
-class PostAdmin(MPTTModelAdmin, admin.ModelAdmin):
+class PostAdmin(admin.ModelAdmin):
     list_display = ('user', 'create_date', 'published', 'view_count', 'id')
     # actions = ('unpublish', 'publish')
 
