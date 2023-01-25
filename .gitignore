@@ -1,6 +1,5 @@
 __pycache__/
 .idea/
-media/*
 migrations/
 
 db.sqlite3
@@ -16,3 +15,6 @@ env.bak/
 venv.bak/
 
 connect_db.py
+
+!*media/.gitkeep
+media/*

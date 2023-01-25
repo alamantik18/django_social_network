@@ -3,6 +3,7 @@ from django.db import models
 
 from django.utils import timezone
 
+
 class User(AbstractUser):
     """ Custom User model """
     GENDER_CHOICES = (
@@ -18,3 +19,19 @@ class User(AbstractUser):
     github = models.CharField(max_length=1024, blank=True, null=True)
     birthday = models.DateField(blank=True, null=True)
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES, blank=True, null=True)
+    technologies = models.ManyToManyField('UserTechnology', related_name='users')
+
+    def __str__(self):
+        return self.username
+
+
+class UserTechnology(models.Model):
+    """ Technologies for user """
+    name = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'User technology'
+        verbose_name_plural = 'User technologies'
