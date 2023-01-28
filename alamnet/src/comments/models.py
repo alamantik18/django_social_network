@@ -6,7 +6,7 @@ class AbstractComment(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=True)
-    delete = models.BooleanField(default=True)
+    deleted = models.BooleanField(default=False)
 
     class Meta:
         abstract = True

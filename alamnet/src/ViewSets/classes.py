@@ -27,8 +27,9 @@ class CreateUpdateDestroy(MixedPermission,
     pass
 
 class CreateRetrevieUpdateDestroy(MixedPermission,
+                                  mixins.CreateModelMixin,
                                   mixins.RetrieveModelMixin,
                                   mixins.UpdateModelMixin,
-                                  mixins.UpdateModelMixin,
+                                  mixins.DestroyModelMixin,
                                   viewsets.GenericViewSet):
     pass

@@ -16,7 +16,7 @@ class IsAuthorCommentEntry(BasePermission):
     def has_object_permission(self, request, view, obj):
         return obj.author == request.user or obj.entry.group.founder == request.user
 
-class IsAuthorComment(BasePermission):
+class IsAuthor(BasePermission):
     """ Permmisions for comment`s author and post`s author """
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
