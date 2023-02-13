@@ -5,7 +5,6 @@ from .serializers import *
 from django.shortcuts import render
 from .models import User
 
-
 class UserPublicView(ModelViewSet):
     """ Output of public profile """
     queryset = User.objects.all()

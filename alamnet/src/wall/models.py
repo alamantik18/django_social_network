@@ -13,7 +13,8 @@ class Post(models.Model):
     moderation = models.BooleanField(default=True)
     view_count = models.PositiveIntegerField(default=0)
 
-    user = models.ForeignKey(AUTH_USER_MODEL, verbose_name='Post`s author', on_delete=models.CASCADE)
+    user = models.ForeignKey(AUTH_USER_MODEL, verbose_name='Post`s author',
+                             on_delete=models.CASCADE, related_name='posts')
 
     def comments_count(self):
         return self.comments.count()

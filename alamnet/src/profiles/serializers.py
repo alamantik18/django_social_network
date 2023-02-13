@@ -16,3 +16,11 @@ class GetPublicUserSerializer(serializers.ModelSerializer):
         model = User
         exclude = ('password', 'is_active', 'is_staff', 'last_login', 'phone',
                    'is_superuser', 'groups', 'email', 'user_permissions')
+
+class UserByFollowerSerializer(serializers.ModelSerializer):
+    """ Serializer for subscribers """
+    avatar = serializers.ImageField(read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'avatar')
